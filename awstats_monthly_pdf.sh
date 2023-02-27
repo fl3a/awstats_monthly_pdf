@@ -2,6 +2,7 @@
 
 # Generate awstats pdf on last day of month 
 # and send  the pdf as attachment via email (mailx)
+# https://github.com/fl3a/awstats_monthly_pdf
 
 # Exit when today + 1 day not equals 1, 
 # which means today is not the last day in the month
