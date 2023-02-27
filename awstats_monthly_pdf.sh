@@ -17,7 +17,7 @@ htmldoc="/home/kdoz/bin/htmldoc"
 lang="de"
 
 email="florian@latzel.io"
-subject="AWStats monthly report `date +%Y.%m` for $domain"
+subject="Statistik für $domain (`date +%Y.%m`)"
 pdf="${dir}/awstats.${domain}.pdf"
 
 perl $buildstaticpages -config=$domain -output -staticlinks \
