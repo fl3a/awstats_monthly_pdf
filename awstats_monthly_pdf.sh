@@ -9,21 +9,30 @@ set -o errexit
 
 # Exit when today + 1 day not equals 1, 
 # which means today is not the last day in the month
-[ $(date -d +1day +%d) -ne 1 ] && exit 
+#[ $(date -d +1day +%d) -ne 1 ] && exit 
 
-buildstaticpages="/home/kdoz/bin/awstats-7.8/tools/awstats_buildstaticpages.pl"
+# AWStatst
+buildstaticpages="${HOME}/bin/awstats-7.8/tools/awstats_buildstaticpages.pl"
 domain="florian.latzel.io"
 config="awstats.florian.latzel.io.conf"
-awstats="/home/kdoz/bin/awstats-7.8/wwwroot/cgi-bin/awstats.pl"
+awstats="${HOME}/bin/awstats-7.8/wwwroot/cgi-bin/awstats.pl"
 lang="de"
-dir="/home/kdoz/html"
-htmldoc="/home/kdoz/bin/htmldoc"
+dir="${HOME}/html"
+htmldoc="${HOME}/bin/htmldoc"
 
-subject="Statistik für $domain (`date +%Y.%m`)"
-pdf="${dir}/awstats.${domain}.pdf"
+# Mail
+date=`date +%Y-%m`
+subject="Statistik für ${domain} (${date})"
+pdf="${dir}/awstats.${domain}-${date}.pdf"
 email="florian@latzel.io"
 
-perl $buildstaticpages -config=$domain -output -staticlinks \
-	-awstatsprog=$awstats -lang=$lang -dir=$dir -buildpdf=$htmldoc 
+perl $buildstaticpages \
+	-config=$domain \
+	-output -staticlinks \
+	-awstatsprog=$awstats \
+	-lang=$lang \
+	-dir=$dir \
+	-buildpdf=$htmldoc 
+mv ${dir}/awstats.${domain}.pdf $pdf 
 echo "$subject" | mailx -s "$subject" -a $pdf $email 
 rm  $pdf
