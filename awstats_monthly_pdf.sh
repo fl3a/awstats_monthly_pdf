@@ -9,13 +9,13 @@ set -o errexit
 
 # Exit when today + 1 day not equals 1, 
 # which means today is not the last day in the month
-#[ $(date -d +1day +%d) -ne 1 ] && exit 
+[ $(date -d +1day +%d) -ne 1 ] && exit 
 
 # AWStatst
-buildstaticpages="${HOME}/bin/awstats-7.8/tools/awstats_buildstaticpages.pl"
+buildstaticpages="${HOME}/bin/awstats/tools/awstats_buildstaticpages.pl"
 domain="florian.latzel.io"
 config="awstats.florian.latzel.io.conf"
-awstats="${HOME}/bin/awstats-7.8/wwwroot/cgi-bin/awstats.pl"
+awstats="${HOME}/bin/awstats/wwwroot/cgi-bin/awstats.pl"
 lang="de"
 dir="${HOME}/html"
 htmldoc="${HOME}/bin/htmldoc"
